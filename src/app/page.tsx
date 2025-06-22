@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import foto from '../../public/foto.jpg';
 
 export default function HomePage() {
   const features = [
@@ -94,7 +95,7 @@ export default function HomePage() {
             >
               <div className="relative w-full aspect-square max-w-md mx-auto">
                 <Image
-                  src="/foto.jpg"
+                  src={foto}
                   alt="Emanuel Muñoz Lopez"
                   fill
                   className="rounded-2xl object-cover"
