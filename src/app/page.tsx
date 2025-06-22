@@ -1,103 +1,177 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image';
+
+export default function HomePage() {
+  const features = [
+    {
+      title: 'Frontend',
+      description: 'Interfaces modernas y responsivas',
+      icon: '🎨',
+      link: '/skills',
+    },
+    {
+      title: 'Backend',
+      description: 'APIs robustas y escalables',
+      icon: '⚙️',
+      link: '/skills',
+    },
+    {
+      title: 'Cloud',
+      description: 'Soluciones en la nube',
+      icon: '☁️',
+      link: '/experience',
+    },
+    {
+      title: 'Testing',
+      description: 'Calidad y rendimiento',
+      icon: '🔍',
+      link: '/experience',
+    },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <main className="min-h-screen animated-background">
+      {/* Rayos de fondo */}
+      {[...Array(8)].map((_, i) => (
+        <div
+          key={i}
+          className="ray"
+          style={{
+            left: `${12.5 * i}%`,
+            animationDelay: `${i * 1.2}s`,
+          }}
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+      ))}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="lg:w-1/2 text-center lg:text-left"
+            >
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6">
+                <span className="text-[#84B026]">EmanuellDev</span>
+                <br />
+                Frontend & Backend
+              </h1>
+              <p className="text-xl text-gray-400 mb-8">
+                Desarrollador Full Stack con experiencia en crear soluciones web modernas y escalables.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <Link href="/about">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-3 bg-[#84B026] text-white rounded-full font-semibold hover:bg-[#217373] transition-all duration-300"
+                  >
+                    Conóceme
+                  </motion.button>
+                </Link>
+                <Link href="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-3 border-2 border-[#84B026] text-[#84B026] rounded-full font-semibold hover:bg-[#84B026] hover:text-white transition-all duration-300"
+                  >
+                    Contáctame
+                  </motion.button>
+                </Link>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="lg:w-1/2 relative"
+            >
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                <Image
+                  src="/foto.jpg"
+                  alt="Emanuel Muñoz Lopez"
+                  fill
+                  className="rounded-2xl object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-[#161F30] via-transparent to-transparent" />
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold mb-4">Especialidades</h2>
+            <p className="text-xl text-gray-400">
+              Soluciones completas para tus necesidades digitales
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <Link key={feature.title} href={feature.link}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  className="bg-[#173540] p-8 rounded-2xl text-center cursor-pointer"
+                >
+                  <div className="text-4xl mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-bold mb-2 text-[#84B026]">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400">{feature.description}</p>
+                </motion.div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-[#173540] rounded-2xl p-12 text-center"
+          >
+            <h2 className="text-3xl font-bold mb-4">
+              ¿Listo para llevar tu proyecto al siguiente nivel?
+            </h2>
+            <p className="text-xl text-gray-400 mb-8">
+              Juntos podemos crear algo extraordinario
+            </p>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-[#84B026] text-white rounded-full font-semibold hover:bg-[#217373] transition-all duration-300"
+              >
+                Empecemos a Trabajar
+              </motion.button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+    </main>
   );
 }

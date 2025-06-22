@@ -1,26 +1,95 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #161F30;
+  --foreground: #ffffff;
+  --primary: #84B026;
+  --secondary: #217373;
+  --accent: #173540;
+  --neutral: #3D3D3D;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+.animated-background {
+  background: linear-gradient(
+    45deg,
+    var(--background) 0%,
+    var(--accent) 50%,
+    var(--background) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+.ray {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--primary),
+    transparent
+  );
+  animation: rayAnimation 8s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes rayAnimation {
+  0% { transform: translateY(-100%) rotate(45deg); opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
+}
+
+.glow {
+  box-shadow: 0 0 20px rgba(132, 176, 38, 0.2);
+}
+
+.card-gradient {
+  background: linear-gradient(145deg, var(--accent), var(--background));
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.accent-gradient {
+  background: linear-gradient(90deg, var(--accent), #00ffaa);
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 102, 0.15) 0%, transparent 70%);
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(90deg, var(--accent), #00ffaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
